@@ -3,112 +3,85 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home · Coffeestylers (prototype)</title>
+<title>Coffeestylers · Concept B (prototype)</title>
 <meta name="description" content="Responsive redesign prototype for Coffeestylers, a specialty coffee shop in Bogotá.">
 <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('cs-theme');if(t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css?v=1795367517">
+<link rel="stylesheet" href="concept-b.css?v=1795368521">
 </head>
 <body>
-<div class="loader" aria-hidden="true"><svg class="route" viewBox="0 0 600 160" preserveAspectRatio="xMidYMid meet"><path class="ghost" d="M20 140 C 100 140 100 60 190 70 S 310 130 380 80 S 490 20 580 30"/><path class="draw" id="lpath" d="M20 140 C 100 140 100 60 190 70 S 310 130 380 80 S 490 20 580 30"/><circle cx="20" cy="140" r="5" class="dot"/><circle id="ldot" cx="20" cy="140" r="6" class="dot fill"/><circle cx="580" cy="30" r="5" class="dot"/></svg><div class="count"><b id="lcount">0</b><span class="mono">%</span></div><p>Coffee is understood cup by cup.</p><small class="mono">Did you know? Every bag of specialty coffee traces back to one farm and one hillside.</small></div>
 <div class="lines" aria-hidden="true"></div>
 <header class="hdr"><div class="c hdr-in">
 <div style="display:flex;align-items:center"><a class="brand" href="index.html" aria-label="Coffeestylers, home">Coffeestylers</a></div>
-<nav class="topnav" aria-label="Main"><a href="shop.html">Shop</a><a href="subscribe.html">Subscribe</a><a href="visit.html">Visit</a><a href="index.html#story">Story</a></nav>
+<nav class="topnav" aria-label="Main"><a href="shop.html">Shop</a><a href="subscribe.html">Subscribe</a><a href="visit.html">Visit</a><a href="index.html#ecosystem">Ecosystem</a></nav>
 <div class="acts"><div class="lang"><button class="lang-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language"><span class="cur">EN</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul class="lang-menu" role="listbox" aria-label="Language" hidden><li role="presentation"><button type="button" role="option" data-l="en" lang="en" aria-selected="true">English</button></li><li role="presentation"><button type="button" role="option" data-l="es" lang="es" aria-selected="false">Español</button></li><li role="presentation"><button type="button" role="option" data-l="fr" lang="fr" aria-selected="false">Français</button></li></ul></div><button class="inv theme" type="button" role="switch" aria-checked="false" aria-label="Dark mode"><span class="trk" aria-hidden="true"><svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg><i></i></span></button><a class="cartlink" href="#" aria-label="Cart, 0 items">Cart (0)</a><button class="ico s" aria-label="Search" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
 </div></header>
 <main>
-
-<section class="hero"><div class="c">
-<h1 class="gran" data-sy="0.12" aria-label="Coffeestylers"><span class="ln"><span style="--d:0">Coffee</span></span><span class="ln"><span style="--d:1">Stylers</span></span></h1>
-<div class="meta mono rv"><span>Specialty coffee</span><span>Bogotá · 57th St</span><span>Mon–Sat from 10:00</span></div>
-<div class="hero-grid">
-<div class="rv" style="--d:1"><p class="frase">We are the community that sees coffee as a way of life.</p>
-<div class="btns"><a class="btn" href="shop.html">Shop coffee</a><a class="btn sec" href="visit.html">Visit the bar</a></div></div>
-<div class="foto rv" style="--d:2"><div class="par" data-par="0.08" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/caturra1-79367eb1b5d95901f317761109794595-1024-1024.webp')"></div></div>
-</div></div></section>
-<div class="marq" aria-hidden="true"><div class="tr"><span>Specialty coffee</span><span>Bogotá</span><span>Puro Flow</span><span>Los Prohibidos</span><span>Mistery Coffee</span><span>Until the next coffee</span><span>Specialty coffee</span><span>Bogotá</span><span>Puro Flow</span><span>Los Prohibidos</span><span>Mistery Coffee</span><span>Until the next coffee</span></div></div>
-
-<section class="lit" aria-label="Manifesto"><div class="lit-in"><div class="c">
-<p class="frase big" data-lit>Bold in the cup. Quiet in the ritual. Every origin, every roast and every pour is resolved before it reaches you.</p>
-<p class="sub">Coffee shapes perception. We make it taste like where it came from.</p>
+<section class="bh"><div class="c">
+<p class="mono suave eyebrow rv">Coffeestylers · Bogotá</p>
+<h1 class="frase big rv" style="--d:1">What are you in the mood for?</h1>
+<div class="intents">
+<a class="intent rv" style="--d:0" href="visit.html"><span class="ph" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776722511349-2597002930-a1817ce833c035aaf366887a9dc242601776722512-1920-1920.webp')"></span><span class="mono">01</span><strong class="frase sm">Drink at the bar</strong><span class="sub">Open today · 57th St</span><span class="go" aria-hidden="true">→</span></a>
+<a class="intent rv" style="--d:1" href="shop.html"><span class="ph" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-de0b23dd6bac31ea5417761088496588-1024-1024.webp')"></span><span class="mono">02</span><strong class="frase sm">Brew at home</strong><span class="sub">4 coffees, ground your way</span><span class="go" aria-hidden="true">→</span></a>
+<a class="intent rv" style="--d:2" href="subscribe.html"><span class="ph" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-f8845e8910018749f917761015362830-1024-1024.webp')"></span><span class="mono">03</span><strong class="frase sm">Get it every month</strong><span class="sub">Mistery Coffee on repeat</span><span class="go" aria-hidden="true">→</span></a>
+<a class="intent rv" style="--d:3" href="#club"><span class="ph" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></span><span class="mono">04</span><strong class="frase sm">Run with us</strong><span class="sub">Coffee Run Club</span><span class="go" aria-hidden="true">→</span></a>
 </div></div></section>
 
-<section class="regla-fuerte"><div class="c">
-<p class="mono suave eyebrow rv">What we stand for</p>
-<div class="pilares">
-<div class="pilar rv"><h3><span class="mono">01</span>Origin</h3><p>Colombian specialty coffees, with farm, process and tasting notes on show.</p></div>
-<div class="pilar rv" style="--d:1"><h3><span class="mono">02</span>Ritual</h3><p>Every bag comes with its recipe: whole bean, V60, espresso or press.</p></div>
-<div class="pilar rv" style="--d:2"><h3><span class="mono">03</span>Style</h3><p>A community, not just a café. The bar is where we meet.</p></div>
+<section class="flow" aria-label="From farm to cup"><div class="c"><ol class="steps4"><li>Farm</li><li>Roastery</li><li>Bar and shop</li><li>You</li></ol></div></section>
+
+<section class="ecos" id="ecosystem"><div class="c">
+<p class="mono suave eyebrow rv">The Coffeestylers ecosystem</p>
+<h2 class="frase big rv" style="--d:1">One brand, six ways to coffee.</h2>
+<div class="ecogrid">
+<a class="eco rv" href="shop.html"><span class="mono suave">01</span><h3 class="frase sm">Roastery</h3><p>We source and roast Colombian specialty coffee, in small batches.</p><span class="tlink">See the coffees</span></a>
+<a class="eco rv" href="visit.html"><span class="mono suave">02</span><h3 class="frase sm">The bar</h3><p>Espresso, filter and food on 57th St. Where it all started.</p><span class="tlink">Plan your visit</span></a>
+<a class="eco rv" href="shop.html"><span class="mono suave">03</span><h3 class="frase sm">Online shop</h3><p>Whole bean or ground for your method, shipped nationwide.</p><span class="tlink">Shop coffee</span></a>
+<a class="eco rv" href="subscribe.html"><span class="mono suave">04</span><h3 class="frase sm">Subscription</h3><p>A new coffee on your doorstep, every month, pause any time.</p><span class="tlink">Build my subscription</span></a>
+<a class="eco rv" href="#club"><span class="mono suave">05</span><h3 class="frase sm">Coffee Run Club</h3><p>Saturday runs, tastings and the people behind the brand.</p><span class="tlink">Join the club</span></a>
+<a class="eco rv" href="mailto:coffeestylers@gmail.com"><span class="mono suave">06</span><h3 class="frase sm">Wholesale</h3><p>Coffee for offices, cafés and events. [Wholesale terms to be defined]</p><span class="tlink">Talk to us</span></a>
 </div></div></section>
 
-
-<section class="band" aria-label="The bar"><div class="par" data-par="0.12" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776722511349-2597002930-a1817ce833c035aaf366887a9dc242601776722512-1920-1920.webp')"></div><div class="c"><p class="mono eyebrow rv">The bar · 57th St, Bogotá</p><p class="frase mid rv" style="--d:1">Come for the coffee. Stay for the people.</p></div></section>
-<div class="drift" aria-hidden="true"><span data-px="0.35">Puro Flow — Los Prohibidos — Puro Flow — Los Prohibidos</span></div>
-
-
-<section class="worlds" aria-label="Three worlds"><div class="c">
-<p class="mono suave eyebrow rv">One coffee, three worlds</p>
-<h2 class="frase big rv" style="--d:1">A coffee shop where the bar, your home and the club meet.</h2>
-<div class="w3">
-<a class="world rv" href="visit.html"><div class="ph" data-clip><div class="par" data-par="0.06" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776722511349-2597002930-a1817ce833c035aaf366887a9dc242601776722512-1920-1920.webp')"></div></div><p class="mono suave">01</p><h3 class="frase sm">The bar</h3><p>Pour-overs, espresso and food on 57th St, Bogotá.</p></a>
-<a class="world rv" style="--d:1" href="shop.html"><div class="ph" data-clip><div class="par" data-par="0.06" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-de0b23dd6bac31ea5417761088496588-1024-1024.webp')"></div></div><p class="mono suave">02</p><h3 class="frase sm">At home</h3><p>Roasted by us, ground for how you brew it, delivered.</p></a>
-<a class="world rv" style="--d:2" href="subscribe.html"><div class="ph" data-clip><div class="par" data-par="0.06" style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></div></div><p class="mono suave">03</p><h3 class="frase sm">The club</h3><p>Subscriptions, tastings and runs for the people behind it.</p></a>
-</div></div></section>
-<section class="regla-fuerte"><div class="c">
-<div class="head2 rv"><h2 class="frase mid">Los Prohibidos</h2><a class="tlink" href="shop.html">See all 4 →</a></div>
-<div class="grid"><a class="card rv" style="--d:0" href="product.html" data-k="sweet"><div class="imgw"><div class="img "><img src="https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-de0b23dd6bac31ea5417761088496588-1024-1024.webp" alt="Pacamara Natural bag" loading="lazy" decoding="async"></div></div><span class="tag">Natural · Sweet · Juicy</span><strong>Pacamara Natural</strong><span>$60.000</span></a><a class="card rv" style="--d:1" href="product.html" data-k="surprise" data-lift="0.07"><div class="imgw"><div class="img t"><span class="sello">Prohibido</span><img src="https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-f8845e8910018749f917761015362830-1024-1024.webp" alt="Mistery Coffee bag" loading="lazy" decoding="async"></div></div><span class="tag">Mystery origin</span><strong>Mistery Coffee</strong><span>$60.000</span></a><a class="card rv" style="--d:2" href="product.html" data-k="sweet"><div class="imgw"><div class="img "><img src="https://dcdn-us.mitiendanube.com/stores/007/501/629/products/caturra-a3a93360a88d8051ca17761109795129-1024-1024.webp" alt="Caturra Yellow Honey bag" loading="lazy" decoding="async"></div></div><span class="tag">Honey · x GOTEO</span><strong>Caturra Yellow Honey</strong><span>$70.000</span></a><a class="card rv" style="--d:3" href="product.html" data-k="everyday" data-lift="0.07"><div class="imgw"><div class="img l"><span class="sello">Prohibido</span><img src="https://dcdn-us.mitiendanube.com/stores/007/501/629/products/blend-45b97516e95f1cf53217761098308810-1024-1024.webp" alt="Blend Prohibido bag" loading="lazy" decoding="async"></div></div><span class="tag">Blend · Tierradentro</span><strong>Blend Prohibido</strong><span>$50.000</span></a></div>
-</div></section>
-
-
-<section class="stories" aria-label="Coffee stories"><div class="c"><p class="mono suave eyebrow rv">Coffee stories</p><h2 class="frase big rv" style="--d:1">Four stories, one cup at a time.</h2></div>
-<article class="story"><div class="c split"><div class="ph" data-clip><div class="par" data-par="0.08" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-de0b23dd6bac31ea5417761088496588-1024-1024.webp')"></div></div><div class="txt"><p class="mono suave">01 · Natural process</p><h3 class="frase mid">Pacamara, naturally sweet</h3><p>A natural process lets the fruit speak. Sweet on the first sip, silky on the last.</p><a class="tlink" href="shop.html">Shop coffee</a></div></div></article><article class="story rev"><div class="c split"><div class="ph" data-clip><div class="par" data-par="0.08" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-f8845e8910018749f917761015362830-1024-1024.webp')"></div></div><div class="txt"><p class="mono suave">02 · Mystery origin</p><h3 class="frase mid">Mistery Coffee, no label</h3><p>We pick it, you open the bag. A different farm every month, never the same cup twice.</p><a class="tlink" href="shop.html">Shop coffee</a></div></div></article><article class="story"><div class="c split"><div class="ph" data-clip><div class="par" data-par="0.08" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></div></div><div class="txt"><p class="mono suave">03 · Coffee Run Club</p><h3 class="frase mid">Run first, coffee after</h3><p>Saturday runs that end at the bar. The community is why the cup tastes better.</p><a class="tlink" href="shop.html">Shop coffee</a></div></div></article><article class="story rev"><div class="c split"><div class="ph" data-clip><div class="par" data-par="0.08" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776722511349-2597002930-a1817ce833c035aaf366887a9dc242601776722512-1920-1920.webp')"></div></div><div class="txt"><p class="mono suave">04 · Bogotá</p><h3 class="frase mid">The bar on 57th St</h3><p>Where coffee is poured, tasted and talked about before it goes home.</p><a class="tlink" href="shop.html">Shop coffee</a></div></div></article>
-</section>
-<section class="pin" id="story" aria-label="Our story: from bean to cup"><div class="pin-in"><div class="c">
-<div class="pin-top mono"><span>Our story · From bean to cup</span><span class="cnt">01 / 04</span></div>
-<div class="pin-grid"><div class="stage">
-<article class="ch"><div class="vis"><div class="par" data-par="0.05" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/caturra1-79367eb1b5d95901f317761109794595-1024-1024.webp')"></div></div><div class="txt"><div class="num">01</div><h3>Farm</h3><p>Every coffee starts with a name and a hillside. [Producers and regions: from the marketing team]</p></div></article>
-<article class="ch"><div class="vis"><div class="par" data-par="0.05" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/blend-45b97516e95f1cf53217761098308810-1024-1024.webp')"></div></div><div class="txt"><div class="num">02</div><h3>Roast</h3><p>Roasted for sweetness, not for show. [Who roasts, where and how often]</p></div></article>
-<article class="ch"><div class="vis"><div class="par" data-par="0.05" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/products/sin-titulo-1-de0b23dd6bac31ea5417761088496588-1024-1024.webp')"></div></div><div class="txt"><div class="num">03</div><h3>Bar</h3><p>The bar on 57th St is where a coffee is tasted before it is taken home.</p></div></article>
-<article class="ch"><div class="vis"><div class="par" data-par="0.05" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></div></div><div class="txt"><div class="num">04</div><h3>Community</h3><p>Club, tastings and the “Until the next coffee” email: the people who make it a way of life.</p></div></article>
-</div></div>
-<div class="rt" aria-hidden="true"><svg viewBox="0 0 1000 60"><path class="ghost" d="M0 40 C 120 40 120 14 250 14 S 380 46 500 30 S 640 6 750 22 S 900 44 1000 20"/><path class="line" d="M0 40 C 120 40 120 14 250 14 S 380 46 500 30 S 640 6 750 22 S 900 44 1000 20"/></svg><span class="mk"></span><span class="nd" style="left:0"></span><span class="nd" style="left:33.3%"></span><span class="nd" style="left:66.6%"></span><span class="nd" style="left:100%"></span></div>
+<section class="guide" id="guide"><div class="c split">
+<div><p class="mono eyebrow rv">Find your coffee</p><h2 class="frase big rv" style="--d:1">Not sure which one? Three quick questions.</h2></div>
+<div class="quiz rv" style="--d:1" id="quiz">
+<div class="q on" data-q="brew"><p class="mono">1 / 3</p><h3 class="frase sm">How do you brew?</h3>
+<div class="opts"><button type="button" data-v="espresso">Espresso</button><button type="button" data-v="filter">Filter (V60)</button><button type="button" data-v="press">Press or moka</button><button type="button" data-v="none">I don’t brew yet</button></div></div>
+<div class="q" data-q="taste"><p class="mono">2 / 3</p><h3 class="frase sm">What do you like?</h3>
+<div class="opts"><button type="button" data-v="sweet">Sweet and fruity</button><button type="button" data-v="everyday">Balanced, every day</button><button type="button" data-v="surprise">Surprise me</button></div></div>
+<div class="q" data-q="freq"><p class="mono">3 / 3</p><h3 class="frase sm">How often?</h3>
+<div class="opts"><button type="button" data-v="once">Just this once</button><button type="button" data-v="monthly">Every month</button></div></div>
+<div class="q res" data-q="result"><p class="mono">Your coffee</p><div class="resbox"><span class="rph" id="rimg"></span><div><h3 class="frase sm" id="rname">Pacamara Natural</h3><p id="rwhy"></p><div class="btns"><a class="btn" id="rcta" href="shop.html">See the coffee</a><a class="btn sec" id="rsub" href="subscribe.html" hidden>Subscribe to it</a></div></div></div><button class="tlink" type="button" id="qreset">Start again</button></div>
 </div></div></section>
 
+<section class="how" id="how"><div class="c">
+<p class="mono suave eyebrow rv">How the subscription works</p>
+<div class="howgrid">
+<div class="rv"><span class="num">1</span><h3 class="frase sm">Pick your plan</h3><p>Mistery Coffee for a surprise, or House coffee for your favourite.</p></div>
+<div class="rv" style="--d:1"><span class="num">2</span><h3 class="frase sm">Tell us how you brew</h3><p>Whole bean, V60, espresso or press. We grind it for you.</p></div>
+<div class="rv" style="--d:2"><span class="num">3</span><h3 class="frase sm">Open the bag</h3><p>It arrives on its own. Pause or cancel any time.</p></div>
+</div><a class="btn" href="subscribe.html" style="max-width:320px">Build my subscription</a></div></section>
 
-<section class="stay" aria-label="Stay a while"><div class="c">
-<div class="head2 rv"><h2 class="frase big">Stay a while.</h2><a class="tlink" href="visit.html">Plan your visit</a></div>
-<div class="cards3">
-<a class="info rv" href="visit.html"><p class="mono suave">Open</p><h3 class="frase sm">Mon to Sat</h3><p>Mon–Fri 10:00–20:00 · Sat 10:00–19:00. Closed on Sundays.</p></a>
-<a class="info rv" style="--d:1" href="visit.html"><p class="mono suave">Menu</p><h3 class="frase sm">Coffee, food, more</h3><p>Espresso, filter, arepas and cake of the day. The full menu is on the visit page.</p></a>
-<a class="info rv" style="--d:2" href="visit.html"><p class="mono suave">Tastings</p><h3 class="frase sm">Events and runs</h3><p>Tastings, Coffee Run Club and workshops. Next dates are announced first by email.</p></a>
+<section class="club" id="club" aria-label="Coffee Run Club"><div class="par" data-par="0.1" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></div><div class="c"><p class="mono eyebrow rv">Community</p><p class="frase mid rv" style="--d:1">Coffee Run Club. Run first, coffee after.</p><div class="btns rv" style="--d:2"><a class="btn acc" href="visit.html">Join the next run</a><a class="btn sec" href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener">Follow @coffeestylers</a></div></div></section>
+
+<section class="proof"><div class="c split"><div class="rv"><p class="big4">4.8</p><p class="mono suave">On Google · about 390 reviews</p></div>
+<div class="quotes rv" style="--d:1"><blockquote><p>[Review quote from a customer]</p><cite>[Name]</cite></blockquote><blockquote><p>[Review quote from a customer]</p><cite>[Name]</cite></blockquote></div></div></section>
+
+<section class="journal"><div class="c"><div class="head2 rv"><h2 class="frase mid">Brew guides and stories</h2><span class="mono suave">Coming soon</span></div>
+<div class="cards3"><div class="info rv"><p class="mono suave">Guide</p><h3 class="frase sm">V60 in four steps</h3><p>[Article to be written with the baristas]</p></div><div class="info rv" style="--d:1"><p class="mono suave">Learn</p><h3 class="frase sm">Natural vs washed</h3><p>[Article to be written with the baristas]</p></div><div class="info rv" style="--d:2"><p class="mono suave">Learn</p><h3 class="frase sm">How to read a coffee bag</h3><p>[Article to be written with the baristas]</p></div></div></div></section>
+
+<section class="faq" id="faq" aria-label="FAQ"><div class="c split"><div><p class="mono suave eyebrow rv">Questions</p><h2 class="frase big rv" style="--d:1">Good to know.</h2></div><div class="rv" style="--d:1">
+<details><summary>Do you ship nationwide?</summary><p>Yes. Shipping time and cost: [Time · cost]. You can also pick up at the bar for free.</p></details>
+<details><summary>Can I buy ground coffee?</summary><p>Yes. On each product you choose whole bean, V60, espresso or press, and we grind it for that method.</p></details>
+<details><summary>How do I pause or cancel a subscription?</summary><p>Any time, with no commitment. Write to us on WhatsApp or by email and we take care of it.</p></details>
+<details><summary>Where is the bar and when is it open?</summary><p>57th St #19-35, Bogotá. Monday to Friday 10:00–20:00, Saturday 10:00–19:00, closed on Sundays.</p></details>
+<details><summary>Do you sell coffee for offices and cafés?</summary><p>Yes. Write to coffeestylers@gmail.com and tell us what you need. [Wholesale terms to be defined]</p></details>
 </div></div></section>
-<section class="rosa"><div class="c duo">
-<div class="rv"><p class="mono eyebrow">Subscription · Mistery Coffee</p>
-<p class="frase big" style="font-size:var(--h1)">A different coffee every month.</p></div>
-<div class="rv" style="--d:1"><p style="margin:0 0 20px;font-size:18px;max-width:38ch">You won’t know which until you open the bag.</p><a class="btn" href="subscribe.html">Build my subscription</a></div>
-</div></section>
 
-
-<section class="ig" aria-label="Instagram" hidden><div class="c">
-<div class="head2 rv"><h2 class="frase mid">On Instagram</h2><a class="tlink" href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener">Follow @coffeestylers</a></div>
-<div class="igrid">
-<a href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener" class="rv"><img src="img/ig-sign.jpg" alt="" loading="lazy"></a>
-<a href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener" class="rv" style="--d:1"><img src="img/ig-pitchers.jpg" alt="" loading="lazy"></a>
-<a href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener" class="rv" style="--d:2"><img src="img/ig-pizza.jpg" alt="" loading="lazy"></a>
-<a href="https://www.instagram.com/coffeestylers/" target="_blank" rel="noopener" class="rv" style="--d:3"><img src="img/ig-runners.jpg" alt="" loading="lazy"></a>
-</div></div></section>
-
-<section class="band run" aria-label="Coffee Run Club"><div class="par" data-par="0.1" data-zoom style="background-image:url('https://dcdn-us.mitiendanube.com/stores/007/501/629/themes/rio/2-slide-1776723098379-2462844389-c85ef9081d4256c665a43cc0b9e0ed6b1776723099-1920-1920.webp')"></div><div class="c"><p class="mono eyebrow rv">Community</p><p class="frase mid rv" style="--d:1">Coffee Run Club. Run first, coffee after.</p><a class="btn acc rv" style="--d:2" href="visit.html">Join the club</a></div></section>
-
-<section><div class="c duo">
-<div class="rv"><h2 class="frase mid">Until the next coffee.</h2></div>
-<div class="rv" style="--d:1"><p class="suave" style="margin:0 0 16px;font-size:16px">New releases, seasonal coffees and tastings. One email a month.</p>
-<form class="form" onsubmit="return false"><label for="mail">Email</label><input id="mail" type="email" placeholder="you@email.com" autocomplete="email"><button class="btn sec" type="submit">Sign up</button></form></div>
-</div></section>
-
+<section class="endcta"><div class="c"><h2 class="frase big rv">Ready for your first cup?</h2><div class="btns rv" style="--d:1"><a class="btn" href="shop.html">Shop coffee</a><a class="btn sec" href="visit.html">Visit the bar</a><a class="btn sec" href="subscribe.html">Subscribe</a></div></div></section>
+<section class="news"><div class="c duo"><div class="rv"><h2 class="frase mid">Until the next coffee.</h2></div><div class="rv" style="--d:1"><p class="suave" style="margin:0 0 16px">New releases, seasonal coffees and tastings. One email a month.</p><form class="form" onsubmit="return false"><label for="mail">Email</label><input id="mail" type="email" placeholder="you@email.com" autocomplete="email"><button class="btn sec" type="submit">Sign up</button></form></div></div></section>
 </main>
 <footer class="pie"><div class="c">
 <div class="gran" aria-hidden="true"><span class="ln"><span>Coffee</span></span><span class="ln"><span>Stylers</span></span></div>
@@ -123,5 +96,6 @@
 <nav class="nav" aria-label="Main"><div class="c"><a href="shop.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/></svg>Shop</a><a href="subscribe.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Subscribe</a><a href="visit.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Visit</a><a href="#" aria-label="Cart, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Cart</a></div></nav>
 <script src="i18n.js?v=1795367517"></script>
 <script src="app.js?v=1795367517"></script>
+<script src="concept.js?v=1795368521"></script>
 </body>
 </html>
