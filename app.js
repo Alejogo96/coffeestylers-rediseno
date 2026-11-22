@@ -75,7 +75,7 @@
   $$('[data-lit]').forEach(function (el) { el.__en = el.textContent.trim(); window.csLit(el, el.__en); });
 
   // ---------- scroll loop: lit words, pinned story, parallax, header ----------
-  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]'), drifts = $$('[data-px]'), sys = $$('[data-sy]'), hdr = $('.hdr');
+  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]').filter(function (el) { return !el.closest('#grilla'); }), drifts = $$('[data-px]'), sys = $$('[data-sy]'), hdr = $('.hdr');
   var lastY = window.scrollY, ticking = false;
   function frame() {
     ticking = false;
