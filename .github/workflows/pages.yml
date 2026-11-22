@@ -1,10 +1,10 @@
 name: Deploy to GitHub Pages
 
 # Publishes main at the site root and, when they exist, the design concept branches
-# at /concept-b/ and /concept-c/ so they can be previewed in the browser.
+# at /concept-b/ and /concept-c/ (run manually via workflow_dispatch on main after pushing a concept branch; the Pages environment only allows deploys from main).
 on:
   push:
-    branches: [main, concept-b-hub, concept-c-journey]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
