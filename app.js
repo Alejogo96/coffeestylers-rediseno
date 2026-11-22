@@ -11,11 +11,18 @@
   };
 
   // ---------- theme (invert colour, like the reference) ----------
-  try { if (localStorage.getItem('cs-theme') === 'dark') doc.setAttribute('data-theme', 'dark'); } catch (e) {}
+  var mq = window.matchMedia && matchMedia('(prefers-color-scheme: dark)');
+  function stored() { try { return localStorage.getItem('cs-theme'); } catch (e) { return null; } }
+  function setTheme(dark) {
+    if (dark) doc.setAttribute('data-theme', 'dark'); else doc.removeAttribute('data-theme');
+    $$('.inv').forEach(function (b) { b.setAttribute('aria-pressed', dark ? 'true' : 'false'); });
+  }
+  setTheme(stored() ? stored() === 'dark' : !!(mq && mq.matches));
+  if (mq && mq.addEventListener) mq.addEventListener('change', function (e) { if (!stored()) setTheme(e.matches); });
   $$('.inv').forEach(function (b) {
     b.addEventListener('click', function () {
       var dark = doc.getAttribute('data-theme') !== 'dark';
-      if (dark) doc.setAttribute('data-theme', 'dark'); else doc.removeAttribute('data-theme');
+      setTheme(dark);
       try { localStorage.setItem('cs-theme', dark ? 'dark' : 'light'); } catch (e) {}
     });
   });
@@ -45,18 +52,20 @@
   } else { rv.forEach(function (el) { el.classList.add('in'); }); }
 
   // ---------- scroll-lit statement: split into words ----------
-  $$('[data-lit]').forEach(function (el) {
-    var words = el.textContent.trim().split(/\s+/);
-    el.setAttribute('aria-label', el.textContent.trim());
+  window.csLit = function (el, text) {
+    var words = text.trim().split(/\s+/);
+    el.setAttribute('aria-label', text.trim());
     el.innerHTML = '';
     words.forEach(function (w, i) {
       var s = document.createElement('span'); s.className = 'w'; s.setAttribute('aria-hidden', 'true'); s.textContent = w;
       el.appendChild(s); if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
     });
-  });
+  };
+  var T = function (x) { return window.csT ? window.csT(x) : x; };
+  $$('[data-lit]').forEach(function (el) { el.__en = el.textContent.trim(); window.csLit(el, el.__en); });
 
   // ---------- scroll loop: lit words, pinned story, parallax, header ----------
-  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]'), drifts = $$('[data-px]'), hdr = $('.hdr');
+  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]'), drifts = $$('[data-px]'), sys = $$('[data-sy]'), hdr = $('.hdr');
   var lastY = window.scrollY, ticking = false;
   function frame() {
     ticking = false;
@@ -85,6 +94,7 @@
         var r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
         el.style.translate = '0 ' + ((r.top + r.height / 2 - vh / 2) * -(parseFloat(el.getAttribute('data-lift')) || 0.06)).toFixed(1) + 'px';
       });
+      sys.forEach(function (el) { el.style.translate = '0 ' + (-y * (parseFloat(el.getAttribute('data-sy')) || 0.1)).toFixed(1) + 'px'; });
       drifts.forEach(function (el) {
         var r = el.parentNode.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return;
         var q = (r.top + r.height / 2 - vh / 2) / vh, k = parseFloat(el.getAttribute('data-px')) || 0.3;
@@ -126,15 +136,15 @@
     $('#qty').textContent = qty;
     $('#total').textContent = fmt(60000 * qty);
     $('#total2').textContent = fmt(60000 * qty);
-    $('#resumen').textContent = qty + ' × ' + mol;
-    $('#metodo').textContent = mol;
-    $('#agregar').textContent = 'Add to cart';
+    $('#resumen').textContent = qty + ' × ' + T(mol);
+    $('#metodo').textContent = T(mol);
+    $('#agregar').textContent = T('Add to cart');
   }
   grupo('#moliendas', 'aria-checked', function (b) { mol = b.getAttribute('data-g'); pinta(); });
   if ($('#mas')) {
     $('#mas').addEventListener('click', function () { qty = Math.min(9, qty + 1); pinta(); });
     $('#menos').addEventListener('click', function () { qty = Math.max(1, qty - 1); pinta(); });
-    $('#agregar').addEventListener('click', function () { this.textContent = 'Added ✓ (prototype)'; });
+    $('#agregar').addEventListener('click', function () { this.textContent = T('Added ✓ (prototype)'); });
   }
 
   // visit: "open now" (Bogotá time) and tabbed menu
@@ -146,26 +156,30 @@
     var cierre = dia === 'Sun' ? null : dia === 'Sat' ? 19 : 20;
     var abierto = cierre !== null && h >= 10 && h < cierre;
     estado.className = 'abierto' + (abierto ? '' : ' cerrado');
-    estado.lastChild.textContent = abierto ? 'Open now · closes at ' + (cierre - 12) + ':00 p.m.' : 'Closed now · open Monday to Saturday from 10:00 a.m.';
+    var paint = function () {
+      estado.lastChild.textContent = abierto ? T('Open now · closes at ') + (cierre - 12) + ':00 p.m.' : T('Closed now · open Monday to Saturday from 10:00 a.m.');
+    };
+    paint(); document.addEventListener('cs-lang', paint);
   }
   var MENU = {
     coffee: [['Espresso', '[Description]'], ['Cappuccino', '[Description]'], ['Flat white', '[Description]'], ['V60 filter', '[Description]'], ['[House drink]', '[Description]']],
     food: [['Arepa', '[Description]'], ['Sandwich', '[Description]'], ['Cake of the day', '[Description]']],
     other: [['Juice', '[Fruit of the day]'], ['[Non-coffee drink]', '[Description]']]
   };
+  var curMenu = 'coffee';
   function menu(k) {
-    var c = $('#items'); if (!c) return;
+    var c = $('#items'); if (!c) return; curMenu = k;
     c.innerHTML = '';
     MENU[k].forEach(function (i) {
       var d = document.createElement('div'); d.className = 'item';
       var l = document.createElement('div'), s = document.createElement('strong'), m = document.createElement('small');
-      s.textContent = i[0]; m.textContent = i[1]; l.appendChild(s); l.appendChild(m);
-      var pr = document.createElement('span'); pr.className = 'mono'; pr.textContent = '[Price]';
+      s.textContent = T(i[0]); m.textContent = T(i[1]); l.appendChild(s); l.appendChild(m);
+      var pr = document.createElement('span'); pr.className = 'mono'; pr.textContent = T('[Price]');
       d.appendChild(l); d.appendChild(pr); c.appendChild(d);
     });
   }
   if ($('#tabs')) {
-    menu('coffee');
+    menu('coffee'); document.addEventListener('cs-lang', function () { menu(curMenu); });
     $$('#tabs button').forEach(function (b) {
       b.addEventListener('click', function () {
         $$('#tabs button').forEach(function (o) { var on = o === b; o.setAttribute('aria-selected', on); o.setAttribute('aria-pressed', on); });
@@ -175,6 +189,13 @@
   }
 
   // subscribe: summary
-  function resumen(id, out) { grupo(id, 'aria-checked', function (b) { $(out).textContent = b.getAttribute('data-v'); }); }
+  function resumen(id, out) {
+    var g = $(id); if (!g) return;
+    $(out).__en = $(out).textContent;
+    document.addEventListener('cs-lang', function () { $(out).textContent = T($(out).__en); });
+    grupo(id, 'aria-checked', function (b) { $(out).__en = b.getAttribute('data-v'); $(out).textContent = T($(out).__en); });
+  }
   resumen('#planes', '#rp'); resumen('#freqs', '#rf'); resumen('#gr', '#rg');
+  document.addEventListener('cs-lang', function () { pinta(); });
+  if (window.csInit) window.csInit();
 })();

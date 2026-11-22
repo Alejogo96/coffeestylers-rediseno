@@ -46,3 +46,9 @@ Adjusted to the reference (santalarch.com): two neutrals (`#F0EFED` and `#0F0F0F
 Product, bar and Coffee Run Club photos are hot-linked from the current store's CDN (coffeestylers.com), so the prototype shows real brand imagery. Before launch, download and host them, or replace them with a new shoot.
 
 Parallax layers: photos drift and zoom inside their frames (`data-par`, `data-zoom`), the hero wordmark and alternate product cards float at different speeds (`data-lift`), and an outlined "Puro Flow — Los Prohibidos" line slides sideways as you scroll (`data-px`). All of it is off with `prefers-reduced-motion`.
+
+## Languages and dark mode
+
+- **Languages:** EN / ES / FR switcher in the header. English is the source text in the HTML; `i18n.js` holds the Spanish and French dictionary. The choice is remembered (localStorage); the first visit follows the browser language. To change wording, edit the dictionary in `i18n.js`.
+- **Dark mode:** follows the system setting on first visit, with a manual toggle (Dark / Oscuro / Sombre) that is remembered.
+- **Instagram strip:** the home page has an "On Instagram" section that appears only when `img/ig-sign.jpg`, `img/ig-pitchers.jpg`, `img/ig-pizza.jpg` and `img/ig-runners.jpg` exist. These are photos from @coffeestylers: ask the brand for permission, or use a new shoot, before launch.

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Subscribe · Coffeestylers (prototype)</title>
 <meta name="description" content="Responsive redesign prototype for Coffeestylers, a specialty coffee shop in Bogotá.">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('cs-theme');if(t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap">
@@ -16,7 +16,7 @@
 <header class="hdr"><div class="c hdr-in">
 <div style="display:flex;align-items:center"><a class="brand" href="index.html" aria-label="Coffeestylers, home">Coffeestylers</a></div>
 <nav class="topnav" aria-label="Main"><a href="shop.html">Shop</a><a href="subscribe.html" aria-current="page">Subscribe</a><a href="visit.html">Visit</a><a href="index.html#story">Story</a></nav>
-<div class="acts"><button class="inv" type="button" aria-label="Invert colors">Invert</button><a class="cartlink" href="#" aria-label="Cart, 0 items">Cart (0)</a><button class="ico s" aria-label="Search" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
+<div class="acts"><div class="lang" role="group" aria-label="Language"><button type="button" data-l="en" aria-pressed="true" lang="en">EN</button><button type="button" data-l="es" aria-pressed="false" lang="es">ES</button><button type="button" data-l="fr" aria-pressed="false" lang="fr">FR</button></div><button class="inv" type="button" aria-label="Dark mode" aria-pressed="false">Invert</button><a class="cartlink" href="#" aria-label="Cart, 0 items">Cart (0)</a><button class="ico s" aria-label="Search" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></div>
 </div></header>
 <main>
 
@@ -67,6 +67,7 @@
 <span class="mono">Design prototype · no real checkout · [bracketed] text still to be filled in</span>
 </div></footer>
 <nav class="nav" aria-label="Main"><div class="c"><a href="shop.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/></svg>Shop</a><a href="subscribe.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Subscribe</a><a href="visit.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Visit</a><a href="#" aria-label="Cart, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Cart</a></div></nav>
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

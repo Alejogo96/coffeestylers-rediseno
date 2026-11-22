@@ -280,3 +280,16 @@ input[type=email]{width:100%;height:52px;padding:0 14px;border:1px solid var(--t
 .drift{overflow:hidden;white-space:nowrap;padding:28px 0;border-block:1px solid var(--linea)}
 .drift span{display:inline-block;font-family:var(--marca);font-size:clamp(64px,14vw,240px);line-height:1;color:transparent;-webkit-text-stroke:1px var(--tinta);will-change:transform}
 @media(prefers-reduced-motion:reduce){.drift span{transform:none!important}}
+
+/* language switcher + dark toggle (all sizes) */
+.lang{display:flex;align-items:center}
+.lang button,.inv{font:10px var(--mono);letter-spacing:.06em;text-transform:uppercase;background:none;border:0;color:var(--suave);cursor:pointer;min-width:32px;height:44px;padding:0 4px}
+.lang button[aria-pressed=true]{color:var(--tinta);text-decoration:underline;text-underline-offset:4px}
+.inv{display:inline-block;color:inherit;min-width:44px;margin-right:0}
+@media(min-width:900px){.lang button,.inv{font-size:11px}.inv{margin-right:8px;padding:8px 4px;height:auto}.lang button{height:auto;padding:8px 4px}}
+@media(max-width:520px){.acts .ico.s{display:none}}
+.ig .igrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:24px}
+@media(min-width:900px){.ig .igrid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.ig .igrid a{display:block;aspect-ratio:4/5;overflow:hidden;background:var(--linea)}
+.ig .igrid img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.ig .igrid a:hover img{transform:scale(1.05)}
