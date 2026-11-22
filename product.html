@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pacamara Natural · Coffeestylers (prototype)</title>
+<meta name="description" content="Mobile-first redesign prototype for Coffeestylers, a specialty coffee shop in Bogotá.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="ico" href="shop.html" aria-label="Back to the shop"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><a class="marca" href="index.html" aria-label="Coffeestylers, home">Coffeestylers</a><span><button class="ico" aria-label="Search" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></span></div></header>
+<main>
+
+<div class="foto rosa" style="min-height:420px;margin:0;justify-content:space-between;flex-direction:column;align-items:stretch"><span class="mono">Photo: Puro Flow bag sobre fondo papel</span><span class="mono">1 / 3</span></div>
+<section style="padding-bottom:8px">
+<p class="mono suave" style="margin:0 0 12px">Los Prohibidos · Puro Flow line</p>
+<h1 class="frase" style="font-size:44px;margin-bottom:14px">Pacamara Natural</h1>
+<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px"><span style="font-size:22px;font-weight:500" id="total">$60.000</span><span class="mono suave">[Weight] g</span></div>
+<p style="margin:0;font-size:17px">A coffee that doesn’t go unnoticed. Intense, expressive and full of character.</p>
+</section>
+<section style="padding-top:16px;padding-bottom:8px">
+<span class="lbl" id="gl">How do you brew it?</span>
+<div class="opc" role="radiogroup" aria-labelledby="gl" id="moliendas">
+<button type="button" role="radio" aria-checked="true" data-g="Whole bean"><strong>Whole bean</strong><small>I grind at home</small></button>
+<button type="button" role="radio" aria-checked="false" data-g="V60"><strong>V60 / Chemex</strong><small>Medium grind</small></button>
+<button type="button" role="radio" aria-checked="false" data-g="Espresso"><strong>Espresso</strong><small>Fine grind</small></button>
+<button type="button" role="radio" aria-checked="false" data-g="Press"><strong>Press / Moka</strong><small>Coarse grind</small></button>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px"><span class="lbl" style="margin:0">Quantity</span>
+<div class="cant"><button type="button" id="menos" aria-label="Remove one bag">−</button><span id="qty" aria-live="polite">1</span><button type="button" id="mas" aria-label="Add one bag">+</button></div></div>
+</section>
+<section style="background:var(--blanco)" class="regla">
+<p class="mono suave" style="margin:0 0 12px">In the cup</p>
+<p class="frase" style="font-size:26px;line-height:1.15;margin-bottom:14px">Juicy · Pronounced sweetness · Silky body</p>
+<p class="suave" style="margin:0;font-size:15px">Its natural process boosts every note and delivers a vibrant profile that evolves with each sip.</p>
+</section>
+<section>
+<p class="mono suave" style="margin:0 0 12px">Details</p>
+<div class="fila"><span>Variety</span><span class="mono">Pacamara</span></div>
+<div class="fila"><span>Process</span><span class="mono">Natural</span></div>
+<div class="fila"><span>Origin</span><span class="mono pend">[Farm · region]</span></div>
+<div class="fila"><span>Altitude</span><span class="mono pend">[masl]</span></div>
+<div class="fila"><span>Roast</span><span class="mono pend">[Date · level]</span></div>
+</section>
+<section class="oscuro">
+<p class="mono" style="color:var(--rosa);margin:0 0 16px">Bar recipe · <span id="metodo">Whole bean</span></p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+<div><div class="frase" style="font-size:36px">[g]</div><span class="mono suave" style="font-size:9px">Coffee</span></div>
+<div><div class="frase" style="font-size:36px">[ml]</div><span class="mono suave" style="font-size:9px">Water</span></div>
+<div><div class="frase" style="font-size:36px">[min]</div><span class="mono suave" style="font-size:9px">Time</span></div></div>
+<p style="margin:16px 0 0;font-size:14px">The recipe changes with the chosen method. Numbers to be filled in with the barista.</p>
+</section>
+<div class="compra"><div class="wrap"><div><span class="mono suave" style="font-size:9px;display:block" id="resumen">1 × Whole bean</span><strong id="total2" style="font-size:18px;font-weight:500">$60.000</strong></div><button class="btn" type="button" id="agregar">Add to cart</button></div></div>
+
+</main>
+<footer class="pie">
+<span class="marca">Coffeestylers</span>
+<span>57th St #19-35, Bogotá</span>
+<span><a href="https://wa.me/573219020117">WhatsApp 321 902 0117</a> · <a href="mailto:coffeestylers@gmail.com">coffeestylers@gmail.com</a></span>
+<span><a href="https://www.instagram.com/coffeestylers/">Instagram @coffeestylers</a></span>
+<span class="mono">Design prototype · no real checkout · [bracketed] text still to be filled in</span>
+</footer>
+<nav class="nav" aria-label="Main"><div class="wrap"><a href="shop.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/></svg>Shop</a><a href="subscribe.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Subscribe</a><a href="visit.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Visit</a><a href="#" aria-label="Cart, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Cart</a></div></nav>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,27 +1,27 @@
-# Coffeestylers · rediseño mobile first (prototipo)
+# Coffeestylers · mobile-first redesign (prototype)
 
-Prototipo navegable en HTML y CSS, sin dependencias ni paso de compilación. Muestra la propuesta de diseño para Coffeestylers, café de especialidad en Bogotá.
+A clickable prototype in plain HTML and CSS, with no dependencies and no build step. It shows the proposed redesign for Coffeestylers, a specialty coffee shop in Bogotá.
 
-- **Ver en el navegador:** https://alejogo96.github.io/coffeestylers-rediseno/
-- **Diseño en Figma:** https://www.figma.com/design/m9PN26xtjHffV3s5cXyfS9
+- **View in the browser:** https://alejogo96.github.io/coffeestylers-rediseno/ (needs GitHub Pages enabled: Settings → Pages → Deploy from a branch → `main` / root)
+- **Design in Figma:** https://www.figma.com/design/m9PN26xtjHffV3s5cXyfS9
 
-## Pantallas
+## Screens
 
-| Archivo | Pantalla |
+| File | Screen |
 |---|---|
-| `index.html` | Inicio |
-| `tienda.html` | Tienda, con filtros por perfil |
-| `producto.html` | Ficha de café: molienda, cantidad y receta |
-| `visitanos.html` | Horarios, "abierto ahora" y menú en texto |
-| `suscripcion.html` | Armador de suscripción |
+| `index.html` | Home |
+| `shop.html` | Shop, with profile filters |
+| `product.html` | Coffee detail: grind, quantity and bar recipe |
+| `visit.html` | Hours, "open now" status and a text menu |
+| `subscribe.html` | Subscription builder |
 
-## Dirección visual
+## Visual direction
 
-Ajustada al referente (santalarch.com): dos neutros (`#F0EFED` y `#0F0F0F`), una sola familia de palo seco en peso ligero para las frases, numeración y mucho aire. Se suma el rosa de las bolsas (`#E8C6D6`) como único acento. Tipografías: Archivo Black (logotipo), Inter y Roboto Mono.
+Adjusted to the reference (santalarch.com): two neutrals (`#F0EFED` and `#0F0F0F`), large phrases in a light weight of a single sans-serif, numbered sections and plenty of air. The pink of the coffee bags (`#E8C6D6`) is the only accent. Typefaces: Archivo Black (logotype), Inter and Roboto Mono.
 
-## Notas
+## Notes
 
-- Es un prototipo: no hay compra real. Las fotos son espacios marcados.
-- Los datos que faltan aparecen entre [corchetes] (origen, altura, precios, receta, texto de historia).
-- Fase 1 del proyecto es un tema a medida en Tiendanube; los filtros, el "abierto ahora" y el armador de suscripción son interacciones de fase 2.
-- Probar en móvil: abrir en el teléfono, o en el navegador con el ancho en 390 px.
+- This is a prototype: there is no real checkout, and the photos are labelled placeholders.
+- Missing facts appear in [brackets] (origin, altitude, prices, recipe, story text).
+- Phase 1 of the project is a custom Tiendanube theme. The filters, the "open now" status and the subscription builder are phase 2 interactions.
+- To test on mobile, open it on a phone, or set the browser width to 390 px.

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop · Coffeestylers (prototype)</title>
+<meta name="description" content="Mobile-first redesign prototype for Coffeestylers, a specialty coffee shop in Bogotá.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hdr"><div class="wrap"><a class="marca" href="index.html" aria-label="Coffeestylers, home">Coffeestylers</a><span><button class="ico" aria-label="Search" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button></span></div></header>
+<main>
+
+<section style="padding-bottom:16px">
+<p class="mono suave" style="margin:0 0 16px">Shop · 4 coffees</p>
+<h1 class="frase" style="font-size:44px;margin-bottom:16px">Coffee to take home.</h1>
+<p class="suave" style="margin:0 0 20px;font-size:15px">Roasted by us. We grind it for how you brew, or ship it as whole bean.</p>
+<div class="chips" role="group" aria-label="Filter by profile" id="filtros">
+<button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+<button class="chip" type="button" data-f="sweet" aria-pressed="false">Sweet</button>
+<button class="chip" type="button" data-f="everyday" aria-pressed="false">Everyday</button>
+<button class="chip" type="button" data-f="surprise" aria-pressed="false">Surprise</button>
+</div>
+</section>
+<section style="padding-top:12px"><div class="grid" id="grilla">
+<a class="card" href="product.html" data-k="sweet"><div class="img "><span class="mono">Photo: Puro Flow bag</span></div><span class="tag">Natural · Sweet · Juicy</span><strong>Pacamara Natural</strong><span>$60.000</span></a>
+<a class="card" href="product.html" data-k="surprise"><div class="img t"><span class="sello">Prohibido</span><span class="mono">Photo: black bag</span></div><span class="tag">Mystery origin</span><strong>Mistery Coffee</strong><span>$60.000</span></a>
+<a class="card" href="product.html" data-k="sweet"><div class="img "><span class="mono">Photo: bag</span></div><span class="tag">Honey · x GOTEO</span><strong>Caturra Yellow Honey</strong><span>$70.000</span></a>
+<a class="card" href="product.html" data-k="everyday"><div class="img l"><span class="sello">Prohibido</span><span class="mono">Photo: bag</span></div><span class="tag">Blend · Tierradentro</span><strong>Blend Prohibido</strong><span>$50.000</span></a>
+</div></section>
+<section class="oscuro">
+<p class="mono" style="color:var(--rosa);margin:0 0 12px">Drinking it every month?</p>
+<p class="frase" style="font-size:26px;line-height:1.15;margin-bottom:16px;color:var(--papel)">Subscribe and it arrives on its own. Pause or cancel any time.</p>
+<a class="btn acc" href="subscribe.html">See plans</a>
+</section>
+<section>
+<p class="mono suave" style="margin:0 0 12px">Shipping</p>
+<div class="fila"><span>Bogotá</span><span class="mono pend">[Time · cost]</span></div>
+<div class="fila"><span>Nationwide</span><span class="mono pend">[Time · cost]</span></div>
+<div class="fila"><span>Pick up at the bar</span><span class="mono">Free</span></div>
+</section>
+
+</main>
+<footer class="pie">
+<span class="marca">Coffeestylers</span>
+<span>57th St #19-35, Bogotá</span>
+<span><a href="https://wa.me/573219020117">WhatsApp 321 902 0117</a> · <a href="mailto:coffeestylers@gmail.com">coffeestylers@gmail.com</a></span>
+<span><a href="https://www.instagram.com/coffeestylers/">Instagram @coffeestylers</a></span>
+<span class="mono">Design prototype · no real checkout · [bracketed] text still to be filled in</span>
+</footer>
+<nav class="nav" aria-label="Main"><div class="wrap"><a href="shop.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/></svg>Shop</a><a href="subscribe.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>Subscribe</a><a href="visit.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Visit</a><a href="#" aria-label="Cart, 0 items"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>Cart</a></div></nav>
+<script src="app.js"></script>
+</body>
+</html>
