@@ -263,3 +263,20 @@ input[type=email]{width:100%;height:52px;padding:0 14px;border:1px solid var(--t
 .compra{margin:0 calc(var(--g) * -1);padding-left:var(--g);padding-right:var(--g)}
 @media(min-width:900px){.compra{margin:0;padding-left:0;padding-right:0}}
 .pie .cols span{display:block}
+
+/* ---- real photos + depth (parallax) ---- */
+.card .img{position:relative;overflow:hidden}
+.card .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .img .sello{position:relative;z-index:2}
+.foto .par,.ch .vis .par{background-size:cover;background-position:center}
+.ch .vis{position:relative}
+.ch .vis .par{position:absolute;left:0;right:0;top:-10%;bottom:-10%}
+.band{position:relative;overflow:hidden;min-height:clamp(340px,72vh,780px);display:flex;align-items:flex-end;padding:48px 0;color:#fff;background:var(--ink0)}
+.band .par{position:absolute;left:0;right:0;top:-14%;bottom:-14%;background-size:cover;background-position:center}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,15,15,.78),rgba(15,15,15,.05) 70%)}
+.band .c{position:relative;z-index:1}
+.band .frase{max-width:18ch;margin:8px 0 0}
+.band .btn{margin-top:20px}
+.drift{overflow:hidden;white-space:nowrap;padding:28px 0;border-block:1px solid var(--linea)}
+.drift span{display:inline-block;font-family:var(--marca);font-size:clamp(64px,14vw,240px);line-height:1;color:transparent;-webkit-text-stroke:1px var(--tinta);will-change:transform}
+@media(prefers-reduced-motion:reduce){.drift span{transform:none!important}}

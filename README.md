@@ -40,3 +40,9 @@ Adjusted to the reference (santalarch.com): two neutrals (`#F0EFED` and `#0F0F0F
 - Missing facts appear in [brackets] (origin, altitude, prices, recipe, story text).
 - Phase 1 of the project is a custom Tiendanube theme. The filters, the "open now" status and the subscription builder are phase 2 interactions.
 - To test the responsive layouts, resize the browser: 390 px (phone), 820 px (tablet) and 1440 px (desktop).
+
+## Photos and parallax depth
+
+Product, bar and Coffee Run Club photos are hot-linked from the current store's CDN (coffeestylers.com), so the prototype shows real brand imagery. Before launch, download and host them, or replace them with a new shoot.
+
+Parallax layers: photos drift and zoom inside their frames (`data-par`, `data-zoom`), the hero wordmark and alternate product cards float at different speeds (`data-lift`), and an outlined "Puro Flow — Los Prohibidos" line slides sideways as you scroll (`data-px`). All of it is off with `prefers-reduced-motion`.
