@@ -13,11 +13,19 @@
     var r = sec.getBoundingClientRect(), vh = window.innerHeight, p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
     var ease = p; cur += (ease - cur) * 0.15; if (Math.abs(ease - cur) < 0.0005) cur = ease;
     track.style.transform = 'translate3d(' + (-cur * 300) + 'vw,0,0)';
+    var stops = track.children, spin = $('#orb .dash');
+    for (var i = 0; i < stops.length; i++) { var d = cur * 3 - i, im = $('.sph i', stops[i]), gh = $('.ghost', stops[i]), tx = $('.stx', stops[i]);
+      if (im) im.style.transform = 'translate3d(' + (d * -90).toFixed(1) + 'px,0,0) scale(1.04)';
+      if (gh) gh.style.transform = 'translate3d(' + (d * -420).toFixed(1) + 'px,0,0)';
+      if (tx) tx.style.transform = 'translate3d(' + (d * -36).toFixed(1) + 'px,0,0)'; }
     prog.style.width = (cur * 100) + '%'; clock.textContent = TIMES[Math.min(3, Math.round(cur * 3))];
     if (cur !== ease) requestAnimationFrame(dayFrame);
   }
   window.addEventListener('scroll', function () { requestAnimationFrame(dayFrame); }, { passive: true });
   window.addEventListener('resize', dayFrame); dayFrame();
+  // slowly rotating dashed ring around the ecosystem diagram
+  var dash = $('#orb .dash');
+  if (dash && !reduce) window.addEventListener('scroll', function () { dash.style.transform = 'rotate(' + (window.scrollY * 0.08).toFixed(1) + 'deg)'; }, { passive: true });
   // ecosystem: list and diagram highlight each other
   function hi(n) { $$('#elist .ei').forEach(function (e) { e.classList.toggle('on', e.getAttribute('data-n') === n); }); $$('#orb .node').forEach(function (e) { e.classList.toggle('on', e.getAttribute('data-n') === n); }); }
   $$('#elist .ei').forEach(function (e) { e.addEventListener('mouseenter', function () { hi(e.getAttribute('data-n')); }); e.addEventListener('focusin', function () { hi(e.getAttribute('data-n')); }); e.addEventListener('mouseleave', function () { hi(null); }); });

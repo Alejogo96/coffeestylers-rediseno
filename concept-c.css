@@ -65,3 +65,29 @@ details p{margin:0 0 24px;color:var(--suave);max-width:60ch}
   .track{display:block;width:auto}.stop{width:auto;padding:0 var(--g);margin-bottom:48px;display:grid}.sph{min-height:260px}
   .prog,.clock{display:none}
 }
+
+/* ---- parallax layers ---- */
+.ghostrow{overflow:hidden;white-space:nowrap;pointer-events:none;user-select:none;line-height:1;padding:8px 0}
+.ghostrow span{display:inline-block;font:900 clamp(72px,14vw,220px)/1 var(--logo,'Archivo Black',sans-serif);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px currentColor;opacity:.28;will-change:transform}
+.ghostrow.light{color:var(--tinta)}
+.deco{position:absolute;right:-6%;top:8%;width:min(80vw,760px);pointer-events:none;opacity:.5;z-index:0}
+.deco circle{fill:none;stroke:currentColor;stroke-width:1.2}
+.pg-hero,.endcta{position:relative;overflow:hidden}
+.pg-cta{position:relative;overflow:hidden}
+.pg-cta .ghostrow,.endcta .ghostrow,.whole .ghostrow{color:var(--rosa)}
+.pg-cta .c,.endcta .c{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.ghostrow span{transform:none!important}}
+.sph{position:relative;overflow:hidden}
+.sph i{position:absolute;top:0;bottom:0;left:-12%;right:-12%;background-size:cover;background-position:center;will-change:transform}
+.stop{position:relative}
+.stop .ghost{position:absolute;left:var(--g);bottom:-8%;font:900 clamp(160px,30vw,460px)/.8 var(--logo,'Archivo Black',sans-serif);color:transparent;-webkit-text-stroke:1px #3B3532;pointer-events:none;will-change:transform;z-index:0}
+.stop>*:not(.ghost){position:relative;z-index:1}
+.diagram .ring.dash{stroke-dasharray:2 10;transform-box:fill-box;transform-origin:center}
+.bandC{position:relative;overflow:hidden;min-height:clamp(420px,80svh,760px);display:flex;align-items:flex-end;padding:48px 0;color:#fff;background:var(--ink0)}
+.bandC .par{position:absolute;left:0;right:0;top:-14%;bottom:-14%;background-size:cover;background-position:center}
+.bandC::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,15,15,.82),rgba(15,15,15,.1) 75%)}
+.bandC .c{position:relative;z-index:1}.bandC .big{max-width:14ch}
+.nums,.whole{position:relative;overflow:hidden}
+.nums .ghostrow.dark{color:#0F0F0F}
+.whole .ghostrow{margin-bottom:16px}
+@media(max-width:899px){.stop .ghost{display:none}}

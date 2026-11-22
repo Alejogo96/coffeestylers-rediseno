@@ -1,0 +1,1 @@
+try{if(!localStorage.getItem('cs-theme')){document.documentElement.setAttribute('data-theme','dark');document.querySelectorAll('.inv').forEach(function(b){b.setAttribute('aria-checked','true')})}}catch(e){}
