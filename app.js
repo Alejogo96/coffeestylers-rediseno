@@ -33,7 +33,7 @@
   if (loader && !reduce && !store.get('cs-intro')) {
     store.set('cs-intro', '1');
     document.body.style.overflow = 'hidden';
-    var lp = $('#lpath'), ld = $('#ldot'), lc = $('#lcount'), len = lp ? lp.getTotalLength() : 1, t0 = null, DUR = 2600;
+    var lp = $('#lpath'), ld = $('#ldot'), lc = $('#lcount'), len = lp ? lp.getTotalLength() : 1, t0 = null, DUR = 1800;
     if (lp) { lp.style.strokeDasharray = len; lp.style.strokeDashoffset = len; }
     var finish = function () {
       loader.classList.add('out'); reveal();
@@ -44,7 +44,7 @@
       var q = Math.min(1, (t - t0) / DUR), e = 1 - Math.pow(1 - q, 2.2);
       if (lc) lc.textContent = Math.round(e * 100);
       if (lp) { lp.style.strokeDashoffset = len * (1 - e); var pt = lp.getPointAtLength(len * e); ld.setAttribute('cx', pt.x); ld.setAttribute('cy', pt.y); }
-      if (q < 1) requestAnimationFrame(tick); else setTimeout(finish, 250);
+      if (q < 1) requestAnimationFrame(tick); else setTimeout(finish, 150);
     };
     requestAnimationFrame(tick);
   } else {
@@ -74,55 +74,74 @@
   var T = function (x) { return window.csT ? window.csT(x) : x; };
   $$('[data-lit]').forEach(function (el) { el.__en = el.textContent.trim(); window.csLit(el, el.__en); });
 
-  // ---------- scroll loop: lit words, pinned story, parallax, header ----------
-  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]').filter(function (el) { return !el.closest('#grilla'); }), drifts = $$('[data-px]'), sys = $$('[data-sy]'), hdr = $('.hdr');
-  var lastY = window.scrollY, ticking = false;
+  // ---------- scroll engine: ONE smoothed scroll value drives every effect (consistent timing) ----------
+  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), lifts = $$('[data-lift]').filter(function (el) { return !el.closest('#grilla'); }), drifts = $$('[data-px]'), sys = $$('[data-sy]'), clips = $$('[data-clip]'), hdr = $('.hdr');
+  var cur = window.scrollY, lastY = cur, raf = 0;
+  var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+  function R(el) { var r = el.getBoundingClientRect(), d = window.scrollY - cur; return { top: r.top + d, bottom: r.bottom + d, height: r.height }; }
+  // route line: fitted to real pixels so dashes, dots and the marker always agree
+  var PTS = [[0,40],[120,40,120,14,250,14],[380,46,500,30],[640,6,750,22],[900,44,1000,20]];
+  function routeFit(rt) {
+    var w = rt.clientWidth, h = rt.clientHeight, sx = w / 1000, sy = h / 60, f = function (n, i) { return (n * (i % 2 ? sy : sx)).toFixed(1); };
+    var d = 'M' + f(0, 0) + ' ' + f(40, 1) + ' C ' + [120,40,120,14,250,14].map(f).join(' ') + ' S ' + [380,46,500,30].map(f).join(' ') + ' S ' + [640,6,750,22].map(f).join(' ') + ' S ' + [900,44,1000,20].map(f).join(' ');
+    rt.querySelector('svg').setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    $$('path', rt).forEach(function (p) { p.setAttribute('d', d); });
+    var line = $('.line', rt); rt.__L = line.getTotalLength(); line.style.strokeDasharray = rt.__L;
+  }
+  $$('.rt').forEach(routeFit);
   function frame() {
-    ticking = false;
-    var vh = window.innerHeight, y = window.scrollY;
+    raf = 0;
+    var vh = window.innerHeight, target = window.scrollY;
+    cur += (target - cur) * (reduce ? 1 : 0.14); if (Math.abs(target - cur) < 0.4) cur = target;
     if (!reduce) {
       lits.forEach(function (sec) {
-        var r = sec.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
-        var ws = $$('.w', sec), n = ws.length, upTo = Math.round(clamp(p * 1.25, 0, 1) * n);
+        var r = R(sec), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+        var ws = $$('.w', sec), n = ws.length, upTo = Math.round(clamp(p * 1.3, 0, 1) * n);
         ws.forEach(function (w, i) { w.classList.toggle('on', i < upTo); });
       });
       pins.forEach(function (sec) {
-        var r = sec.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 0.9999);
+        var r = R(sec), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 0.9999);
         var chs = $$('.ch', sec), idx = Math.floor(p * chs.length);
         chs.forEach(function (c, i) { c.classList.toggle('on', i === idx); });
         var rt = $('.rt', sec);
-        if (rt) {
-          var line = $('.line', rt), L = line.getTotalLength(), pt = line.getPointAtLength(L * p), box = rt.getBoundingClientRect(), vb = rt.querySelector('svg').getBoundingClientRect();
-          line.style.strokeDasharray = L; line.style.strokeDashoffset = L * (1 - p);
-          var mk = $('.mk', rt); mk.style.left = (pt.x / 10) + '%'; mk.style.top = (pt.y / 60 * vb.height) + 'px';
-          $$('.nd', rt).forEach(function (n, i) { var q = line.getPointAtLength(L * i / 3); n.style.left = (q.x / 10) + '%'; n.style.top = (q.y / 60 * vb.height - 5) + 'px'; n.classList.toggle('on', p >= i / 3 - 0.001); });
+        if (rt && rt.__L) {
+          var line = $('.line', rt), L = rt.__L, pt = line.getPointAtLength(L * p);
+          line.style.strokeDashoffset = L * (1 - p);
+          var mk = $('.mk', rt); mk.style.left = pt.x + 'px'; mk.style.top = pt.y + 'px';
+          $$('.nd', rt).forEach(function (n, i) { var q = line.getPointAtLength(L * i / 3); n.style.left = q.x + 'px'; n.style.top = q.y + 'px'; n.classList.toggle('on', p >= i / 3 - 0.001); });
         }
         var cnt = $('.cnt', sec); if (cnt) cnt.textContent = '0' + (idx + 1) + ' / 0' + chs.length;
       });
       pars.forEach(function (el) {
-        var r = el.parentNode.getBoundingClientRect(), k = parseFloat(el.getAttribute('data-par')) || 0.08;
+        var r = R(el.parentNode), k = parseFloat(el.getAttribute('data-par')) || 0.08;
         if (r.bottom < -100 || r.top > vh + 100) return;
         var off = r.top + r.height / 2 - vh / 2, z = '';
-        if (el.hasAttribute('data-zoom')) { var q = clamp(1 - (r.top + r.height) / (vh + r.height), 0, 1); z = ' scale(' + (1.22 - 0.2 * q).toFixed(3) + ')'; }
+        if (el.hasAttribute('data-zoom')) { var q = clamp(1 - (r.top + r.height) / (vh + r.height), 0, 1); z = ' scale(' + (1.2 - 0.2 * ease(q)).toFixed(3) + ')'; }
         el.style.transform = 'translate3d(0,' + (off * -k).toFixed(1) + 'px,0)' + z;
       });
+      clips.forEach(function (el) {
+        var r = R(el); if (r.bottom < -50 || r.top > vh + 50) return;
+        var q = ease(clamp((vh - r.top) / (vh * 0.75), 0, 1)), inset = (1 - q) * 16;
+        el.style.clipPath = 'inset(' + inset.toFixed(2) + '% ' + (inset * 0.6).toFixed(2) + '% ' + inset.toFixed(2) + '% ' + (inset * 0.6).toFixed(2) + '%)';
+      });
       lifts.forEach(function (el) {
-        var r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+        var r = R(el); if (r.bottom < -200 || r.top > vh + 200) return;
         el.style.translate = '0 ' + ((r.top + r.height / 2 - vh / 2) * -(parseFloat(el.getAttribute('data-lift')) || 0.06)).toFixed(1) + 'px';
       });
-      sys.forEach(function (el) { el.style.translate = '0 ' + (-y * (parseFloat(el.getAttribute('data-sy')) || 0.1)).toFixed(1) + 'px'; });
+      sys.forEach(function (el) { el.style.translate = '0 ' + (-cur * (parseFloat(el.getAttribute('data-sy')) || 0.1)).toFixed(1) + 'px'; });
       drifts.forEach(function (el) {
-        var r = el.parentNode.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return;
+        var r = R(el.parentNode); if (r.bottom < 0 || r.top > vh) return;
         var q = (r.top + r.height / 2 - vh / 2) / vh, k = parseFloat(el.getAttribute('data-px')) || 0.3;
         el.style.transform = 'translate3d(' + (q * -k * window.innerWidth).toFixed(1) + 'px,0,0)';
       });
     }
-    if (hdr) { hdr.classList.toggle('hide', y > lastY && y > 240 && window.innerWidth >= 900); }
-    lastY = y;
+    if (hdr) { hdr.classList.toggle('hide', target > lastY + 2 && target > 240 && window.innerWidth >= 900); }
+    lastY = target;
+    if (cur !== target) raf = requestAnimationFrame(frame);
   }
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  function onScroll() { if (!raf) raf = requestAnimationFrame(frame); }
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', function () { $$('.rt').forEach(routeFit); onScroll(); });
   // first chapter visible before any scroll happens
   $$('.pin').forEach(function (sec) { var c = $('.ch', sec); if (c) c.classList.add('on'); });
   frame();
