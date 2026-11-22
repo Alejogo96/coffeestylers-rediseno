@@ -15,7 +15,7 @@
   function stored() { try { return localStorage.getItem('cs-theme'); } catch (e) { return null; } }
   function setTheme(dark) {
     if (dark) doc.setAttribute('data-theme', 'dark'); else doc.removeAttribute('data-theme');
-    $$('.inv').forEach(function (b) { b.setAttribute('aria-pressed', dark ? 'true' : 'false'); });
+    $$('.inv').forEach(function (b) { b.setAttribute('aria-pressed', dark ? 'true' : 'false'); b.setAttribute('aria-checked', dark ? 'true' : 'false'); });
   }
   setTheme(stored() ? stored() === 'dark' : !!(mq && mq.matches));
   if (mq && mq.addEventListener) mq.addEventListener('change', function (e) { if (!stored()) setTheme(e.matches); });
@@ -33,10 +33,20 @@
   if (loader && !reduce && !store.get('cs-intro')) {
     store.set('cs-intro', '1');
     document.body.style.overflow = 'hidden';
-    setTimeout(function () {
+    var lp = $('#lpath'), ld = $('#ldot'), lc = $('#lcount'), len = lp ? lp.getTotalLength() : 1, t0 = null, DUR = 2600;
+    if (lp) { lp.style.strokeDasharray = len; lp.style.strokeDashoffset = len; }
+    var finish = function () {
       loader.classList.add('out'); reveal();
       setTimeout(function () { loader.classList.add('gone'); document.body.style.overflow = ''; }, 950);
-    }, 1500);
+    };
+    var tick = function (t) {
+      if (t0 === null) t0 = t;
+      var q = Math.min(1, (t - t0) / DUR), e = 1 - Math.pow(1 - q, 2.2);
+      if (lc) lc.textContent = Math.round(e * 100);
+      if (lp) { lp.style.strokeDashoffset = len * (1 - e); var pt = lp.getPointAtLength(len * e); ld.setAttribute('cx', pt.x); ld.setAttribute('cy', pt.y); }
+      if (q < 1) requestAnimationFrame(tick); else setTimeout(finish, 250);
+    };
+    requestAnimationFrame(tick);
   } else {
     if (loader) loader.classList.add('gone');
     setTimeout(reveal, 60);
@@ -80,7 +90,13 @@
         var r = sec.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 0.9999);
         var chs = $$('.ch', sec), idx = Math.floor(p * chs.length);
         chs.forEach(function (c, i) { c.classList.toggle('on', i === idx); });
-        var bar = $('.bar', sec); if (bar) bar.style.setProperty('--p', p.toFixed(3));
+        var rt = $('.rt', sec);
+        if (rt) {
+          var line = $('.line', rt), L = line.getTotalLength(), pt = line.getPointAtLength(L * p), box = rt.getBoundingClientRect(), vb = rt.querySelector('svg').getBoundingClientRect();
+          line.style.strokeDasharray = L; line.style.strokeDashoffset = L * (1 - p);
+          var mk = $('.mk', rt); mk.style.left = (pt.x / 10) + '%'; mk.style.top = (pt.y / 60 * vb.height) + 'px';
+          $$('.nd', rt).forEach(function (n, i) { var q = line.getPointAtLength(L * i / 3); n.style.left = (q.x / 10) + '%'; n.style.top = (q.y / 60 * vb.height - 5) + 'px'; n.classList.toggle('on', p >= i / 3 - 0.001); });
+        }
         var cnt = $('.cnt', sec); if (cnt) cnt.textContent = '0' + (idx + 1) + ' / 0' + chs.length;
       });
       pars.forEach(function (el) {
