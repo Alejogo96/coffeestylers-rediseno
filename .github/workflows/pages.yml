@@ -39,6 +39,8 @@ jobs:
           path: site/concept-c
       - name: Remove git metadata from the published folder
         run: rm -rf site/.git site/concept-b/.git site/concept-c/.git
+      - name: List what will be published
+        run: ls -la site site/concept-b site/concept-c || true
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
