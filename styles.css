@@ -342,3 +342,51 @@ input[type=email]{width:100%;height:52px;padding:0 14px;border:1px solid var(--t
 .rt .mk{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--rosa);box-shadow:0 0 0 6px color-mix(in srgb,var(--rosa) 25%,transparent);left:0;top:40px}
 @media(prefers-reduced-motion:reduce){.rt{display:none}}
 .lang .lang-btn svg{display:block;width:16px;height:16px;flex:none}
+
+/* ===== TYPE SYSTEM v2 =====
+   Three body sizes (16 / 14 / 12), a four-step heading scale with sane caps,
+   weights 400 / 500 only (plus the Archivo Black logotype), headings 1.15 line-height. */
+:root{
+  --t-body:16px; --t-sec:14px; --t-meta:12px;
+  --h1:clamp(32px,4vw,56px); --h2:clamp(28px,3vw,44px); --h3:clamp(22px,2.1vw,32px); --lead:clamp(18px,1.4vw,22px);
+}
+body{font-size:var(--t-body);line-height:1.55}
+.mono{font-size:var(--t-meta);letter-spacing:.04em}
+.frase{font-weight:400;letter-spacing:-.015em;line-height:1.15}
+.big,.hero .frase{font-size:var(--h1);line-height:1.12}
+.mid{font-size:var(--h2);line-height:1.15}
+.sm{font-size:var(--h3);line-height:1.2}
+.hero .frase{margin-bottom:28px;max-width:20ch}
+.lit .big{font-size:clamp(24px,3vw,44px);line-height:1.25;max-width:34ch;letter-spacing:-.01em}
+.lit .sub{font-size:var(--t-body);max-width:52ch}
+/* logotype: one line on desktop, two on phones, never taller than ~1/6 of the screen */
+.gran{font-size:clamp(40px,13vw,64px);line-height:1;letter-spacing:.02em;margin:0 0 20px}
+@media(min-width:900px){.gran{font-size:clamp(56px,6.4vw,96px);margin:0 0 40px}}
+@media(min-width:1440px){.gran{font-size:96px}}
+.pie .gran{font-size:clamp(40px,13vw,64px);margin:0 0 24px}
+@media(min-width:900px){.pie .gran{font-size:clamp(56px,6.4vw,96px)}}
+@media(min-width:1440px){.pie .gran{font-size:96px}}
+.pilar h3{font-weight:400;font-size:var(--h3);letter-spacing:-.01em;line-height:1.2}
+.pilar p,.compra p{font-size:var(--t-body)}
+.ch .num{font-family:var(--sans);font-weight:500;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.02em}
+.ch h3{font-weight:400;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.015em;line-height:1.15}
+.ch p{font-size:var(--t-body);line-height:1.55}
+.drift span{font-family:var(--sans);font-weight:500;font-size:clamp(48px,8vw,120px);letter-spacing:-.02em}
+.loader p{font-weight:400;font-size:clamp(28px,4vw,52px);line-height:1.15;letter-spacing:-.015em;max-width:20ch}
+.loader .count{font-family:var(--sans);font-weight:500;font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.02em}
+.loader small{font-size:var(--t-meta);line-height:1.5}
+/* small labels: 12px floor */
+.nav a,.chip,.tlink,.marq span,.card .tag,.sello,.foto .mono,.card .img .mono,.topnav a,.inv,.cartlink,.lang button,.lang .lang-btn{font-size:var(--t-meta)}
+.pilar h3 .mono{font-size:var(--t-meta)}
+.btn{font-size:var(--t-body)}
+.card strong{font-size:var(--t-body)}
+.hdr .brand{font-size:14px}
+@media(min-width:900px){.topnav a,.inv,.cartlink,.lang button,.lang .lang-btn{font-size:var(--t-meta)}}
+/* nothing below the floor, wherever it was set inline */
+[style*="font-size:9px"],[style*="font-size:10px"],[style*="font-size:11px"]{font-size:var(--t-meta)!important}
+/* readable line length */
+p{max-width:68ch}
+.lbl,label{font-size:var(--t-meta)}
+.drift span{font-size:clamp(40px,6vw,88px)}
+@media(min-width:900px){.gran,.pie .gran{font-size:clamp(52px,5.6vw,80px)}}
+@media(min-width:1440px){.gran,.pie .gran{font-size:80px}}
