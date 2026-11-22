@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
+# Publishes main at the site root and, when they exist, the design concept branches
+# at /concept-b/ and /concept-c/ so they can be previewed in the browser.
 on:
   push:
-    branches: [main]
+    branches: [main, concept-b-hub, concept-c-journey]
   workflow_dispatch:
 
 permissions:
@@ -22,9 +24,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: concept-b-hub
+          path: site/concept-b
+      - uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: concept-c-journey
+          path: site/concept-c
+      - name: Remove git metadata from the published folder
+        run: rm -rf site/.git site/concept-b/.git site/concept-c/.git
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: site
       - id: deployment
         uses: actions/deploy-pages@v4
