@@ -1,9 +1,96 @@
-// Minimal prototype interactions. No dependencies.
+// Coffeestylers prototype: interactions, storytelling and motion. No dependencies.
 (function () {
+  var doc = document.documentElement;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  var store = {
+    get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+  };
 
-  // Exclusive selection inside a group (radios / chips / filters)
+  // ---------- theme (invert colour, like the reference) ----------
+  try { if (localStorage.getItem('cs-theme') === 'dark') doc.setAttribute('data-theme', 'dark'); } catch (e) {}
+  $$('.inv').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var dark = doc.getAttribute('data-theme') !== 'dark';
+      if (dark) doc.setAttribute('data-theme', 'dark'); else doc.removeAttribute('data-theme');
+      try { localStorage.setItem('cs-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    });
+  });
+
+  // ---------- intro loader (home only, once per session) ----------
+  var loader = $('.loader');
+  function reveal() { doc.classList.add('ready'); $$('.gran').forEach(function (g) { g.classList.add('in'); }); }
+  if (loader && !reduce && !store.get('cs-intro')) {
+    store.set('cs-intro', '1');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () {
+      loader.classList.add('out'); reveal();
+      setTimeout(function () { loader.classList.add('gone'); document.body.style.overflow = ''; }, 950);
+    }, 1500);
+  } else {
+    if (loader) loader.classList.add('gone');
+    setTimeout(reveal, 60);
+  }
+
+  // ---------- reveal on scroll ----------
+  var rv = $$('.rv');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    rv.forEach(function (el) { io.observe(el); });
+  } else { rv.forEach(function (el) { el.classList.add('in'); }); }
+
+  // ---------- scroll-lit statement: split into words ----------
+  $$('[data-lit]').forEach(function (el) {
+    var words = el.textContent.trim().split(/\s+/);
+    el.setAttribute('aria-label', el.textContent.trim());
+    el.innerHTML = '';
+    words.forEach(function (w, i) {
+      var s = document.createElement('span'); s.className = 'w'; s.setAttribute('aria-hidden', 'true'); s.textContent = w;
+      el.appendChild(s); if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  // ---------- scroll loop: lit words, pinned story, parallax, header ----------
+  var lits = $$('.lit'), pins = $$('.pin'), pars = $$('[data-par]'), hdr = $('.hdr');
+  var lastY = window.scrollY, ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight, y = window.scrollY;
+    if (!reduce) {
+      lits.forEach(function (sec) {
+        var r = sec.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+        var ws = $$('.w', sec), n = ws.length, upTo = Math.round(clamp(p * 1.25, 0, 1) * n);
+        ws.forEach(function (w, i) { w.classList.toggle('on', i < upTo); });
+      });
+      pins.forEach(function (sec) {
+        var r = sec.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh), 0, 0.9999);
+        var chs = $$('.ch', sec), idx = Math.floor(p * chs.length);
+        chs.forEach(function (c, i) { c.classList.toggle('on', i === idx); });
+        var bar = $('.bar', sec); if (bar) bar.style.setProperty('--p', p.toFixed(3));
+        var cnt = $('.cnt', sec); if (cnt) cnt.textContent = '0' + (idx + 1) + ' / 0' + chs.length;
+      });
+      pars.forEach(function (el) {
+        var r = el.parentNode.getBoundingClientRect(), k = parseFloat(el.getAttribute('data-par')) || 0.08;
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        el.style.transform = 'translate3d(0,' + ((r.top + r.height / 2 - vh / 2) * -k).toFixed(1) + 'px,0)';
+      });
+    }
+    if (hdr) { hdr.classList.toggle('hide', y > lastY && y > 240 && window.innerWidth >= 900); }
+    lastY = y;
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  // first chapter visible before any scroll happens
+  $$('.pin').forEach(function (sec) { var c = $('.ch', sec); if (c) c.classList.add('on'); });
+  frame();
+
+  // ---------- selection groups ----------
   function grupo(sel, attr, cb) {
     var g = $(sel); if (!g) return;
     $$('button', g).forEach(function (b) {
@@ -14,13 +101,13 @@
     });
   }
 
-  // Shop: filter by profile
+  // shop: filter by profile
   grupo('#filtros', 'aria-pressed', function (b) {
     var f = b.getAttribute('data-f');
     $$('#grilla .card').forEach(function (c) { c.hidden = !(f === 'all' || c.getAttribute('data-k') === f); });
   });
 
-  // Product page: grind, quantity, total
+  // product: grind, quantity, total
   var qty = 1, mol = 'Whole bean';
   function fmt(n) { return '$' + n.toLocaleString('es-CO'); }
   function pinta() {
@@ -39,7 +126,7 @@
     $('#agregar').addEventListener('click', function () { this.textContent = 'Added ✓ (prototype)'; });
   }
 
-  // Visit: "open now" status (Bogotá time) and tabbed menu
+  // visit: "open now" (Bogotá time) and tabbed menu
   var estado = $('#estado');
   if (estado) {
     var p = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Bogota', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
@@ -76,7 +163,7 @@
     });
   }
 
-  // Subscribe: summary
+  // subscribe: summary
   function resumen(id, out) { grupo(id, 'aria-checked', function (b) { $(out).textContent = b.getAttribute('data-v'); }); }
   resumen('#planes', '#rp'); resumen('#freqs', '#rf'); resumen('#gr', '#rg');
 })();

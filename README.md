@@ -15,6 +15,21 @@ A clickable prototype in plain HTML and CSS, with no dependencies and no build s
 | `visit.html` | Hours, "open now" status and a text menu |
 | `subscribe.html` | Subscription builder |
 
+## Responsive
+
+Mobile first, with three layouts: phone (390 px, bottom navigation), tablet (700 px and up) and desktop (900 px and up, top navigation, hairline columns, two-column pages). Checked at 390, 820 and 1440 px with no horizontal overflow.
+
+## Storytelling and motion
+
+Inspired by the reference, and all of it honors `prefers-reduced-motion` (content simply shows, nothing is pinned or animated):
+
+- Intro screen on the first visit of a session: "Coffee is understood cup by cup."
+- Giant wordmark that rises into place, and a marquee strip.
+- Manifesto that lights up word by word as you scroll.
+- Pinned story "From bean to cup": four chapters (Farm, Roast, Bar, Community) driven by scroll, with a progress line.
+- Fade-up reveals, hover states on cards and links, a header that hides on scroll down, light parallax on photos.
+- "Invert" button (desktop header) that flips the color theme.
+
 ## Visual direction
 
 Adjusted to the reference (santalarch.com): two neutrals (`#F0EFED` and `#0F0F0F`), large phrases in a light weight of a single sans-serif, numbered sections and plenty of air. The pink of the coffee bags (`#E8C6D6`) is the only accent. Typefaces: Archivo Black (logotype), Inter and Roboto Mono.
@@ -24,4 +39,4 @@ Adjusted to the reference (santalarch.com): two neutrals (`#F0EFED` and `#0F0F0F
 - This is a prototype: there is no real checkout, and the photos are labelled placeholders.
 - Missing facts appear in [brackets] (origin, altitude, prices, recipe, story text).
 - Phase 1 of the project is a custom Tiendanube theme. The filters, the "open now" status and the subscription builder are phase 2 interactions.
-- To test on mobile, open it on a phone, or set the browser width to 390 px.
+- To test the responsive layouts, resize the browser: 390 px (phone), 820 px (tablet) and 1440 px (desktop).
